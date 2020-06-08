@@ -5,7 +5,7 @@ using System.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace WebCrawler
+namespace DataAccess
 {
     public class JsonDbConnector
     {

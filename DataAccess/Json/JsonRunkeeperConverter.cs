@@ -5,11 +5,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Linq;
 
-namespace WebCrawler
+namespace DataAccess
 {
     public class JsonRunkeeperConverter
     {
-        public void ConvertFromJson()
+        public List<JsonMonthData> ConvertFromJson()
         {
             var strings = new JsonDbConnector().GetFromJsonDb();
 
@@ -33,9 +33,11 @@ namespace WebCrawler
                 }
                 catch (Exception e)
                 {
-
+                    throw;
                 }
             }
+
+            return data;
         }
     }
 }

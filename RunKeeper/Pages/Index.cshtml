@@ -5,6 +5,27 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table>
+        @foreach (var d in Model.data)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(x => d.ActivityDateTime);
+            </td>
+            <td>
+                @Html.DisplayFor(x => d.Type);
+            </td>
+            <td>
+                @Html.DisplayFor(x => d.Distance);
+            </td>
+            <td>
+                @Html.DisplayFor(x => d.ElapsedTime);
+            </td>
+            <td>
+                @Html.DisplayFor(x => d.Link);
+            </td>
+        </tr>
+        }
+    </table>
+
 </div>

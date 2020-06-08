@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Globalization;
 using System.Text.Json.Serialization;
 
-namespace WebCrawler
+namespace DataAccess
 {
     public class JsonMonthData
     {

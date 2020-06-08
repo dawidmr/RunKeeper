@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,36 +8,31 @@ using System.Threading;
 
 namespace WebCrawler
 {
-    class Program
+    public class RunkeeperWebsite
     {
-        static void Main(string[] args)
-        {
-            new JsonRunkeeperConverter().ConvertFromJson();
-        }
-
-        public static void GetData()
+        public List<string> GetDataFromRunkeeperWebsite(string login, DateTime since)
         {
             //string url = "https://runkeeper.com/activitiesByDateRange?userName=mroczekdawid&startDate=April-01-2020";
-            string urlPrefix = "https://runkeeper.com/activitiesByDateRange?userName=mroczekdawid&startDate=";
-            var startDate = new DateTime(2012, 3, 1);
 
-            var urls = GetUrls(urlPrefix, startDate);
+            string urlPrefix = $"https://runkeeper.com/activitiesByDateRange?userName={login}&startDate=";
+            if (since == DateTime.MinValue)
+                throw new Exception("Too long");
+
+            var urls = GenerateMonthUrls(urlPrefix, since);
             var data = new List<string>();
-            
-            foreach(var url in urls)
+
+            foreach (var url in urls)
             {
-                data.Add(GetData(url));
+                data.Add(GetJsonDataFromWebsite(url));
                 Console.WriteLine(url);
-                Thread.Sleep(new Random().Next(20, 300));
+                Thread.Sleep(new Random().Next(5, 30));
             }
 
-            Console.WriteLine("Saving to DB");
-
-            new JsonDbConnector().AddToDB(data);
+            return data;
 
         }
 
-        public static List<string> GetUrls(string prefix, DateTime startDate)
+        private List<string> GenerateMonthUrls(string prefix, DateTime startDate)
         {
             List<string> urls = new List<string>();
 
@@ -52,7 +47,7 @@ namespace WebCrawler
             return urls;
         }
 
-        public static string GetData(string requestUrl)
+        private string GetJsonDataFromWebsite(string requestUrl)
         {
             var request = HttpWebRequest.Create(requestUrl);
 

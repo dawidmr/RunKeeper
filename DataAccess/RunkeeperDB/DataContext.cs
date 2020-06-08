@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebCrawler.RunkeeperDB
+namespace DataAccess.RunkeeperDB
 {
     public class DataContext: DbContext
     {
-        DbSet<>
+        public DbSet<Data> Data { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

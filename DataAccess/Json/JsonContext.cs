@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebCrawler
+namespace DataAccess
 {
     public class JsonContext : DbContext
     {

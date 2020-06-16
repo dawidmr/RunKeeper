@@ -4,25 +4,30 @@
     ViewData["Title"] = "Home page";
 }
 
+
+<form asp-page-handler="update" method="post">
+    <button class="btn btn-dark">Update</button>
+</form>
+
 <div class="text-center">
-    <table>
+    <table class="table">
         @foreach (var d in Model.data)
         {
         <tr>
             <td>
-                @Html.DisplayFor(x => d.ActivityDateTime);
+                @d.ActivityDateTime.ToShortDateString()
             </td>
             <td>
-                @Html.DisplayFor(x => d.Type);
+                @d.Type
             </td>
             <td>
-                @Html.DisplayFor(x => d.Distance);
+                @d.Distance.ToString("#0.00")
             </td>
             <td>
-                @Html.DisplayFor(x => d.ElapsedTime);
+                @d.ElapsedTime
             </td>
             <td>
-                @Html.DisplayFor(x => d.Link);
+               <a href=@d.Link target="_blank">link</a>
             </td>
         </tr>
         }

@@ -1,0 +1,78 @@
+﻿@page
+@model RunKeeper.Pages.Activities.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].Link)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].ActivityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].ActivityDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEx[0].ElapsedTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.DataEx) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElapsedTime)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

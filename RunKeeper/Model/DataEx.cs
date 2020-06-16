@@ -11,6 +11,11 @@ namespace RunKeeper.Model
     {
         public string Link { get; set; }
 
+        public DataEx()
+        {
+
+        }
+
         public DataEx(Data d)
         {
             ActivityDateTime = d.ActivityDateTime;

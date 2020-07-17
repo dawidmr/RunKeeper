@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunKeeper", "RunKeeper\RunK
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{30CA162B-FB43-469A-8C07-9C6A078C12E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCrawler", "WebCrawler\WebCrawler.csproj", "{4B57EA82-85B8-4108-8E6A-0E71FB590796}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCrawler", "WebCrawler\WebCrawler.csproj", "{4B57EA82-85B8-4108-8E6A-0E71FB590796}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D33C0A45-F37F-4ECF-A9CB-E7A25C2FB700}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{D33C0A45-F37F-4ECF-A9CB-E7A25C2FB700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ranking", "Ranking\Ranking.csproj", "{51822234-74EC-48A6-A26E-F9FBE5766744}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D33C0A45-F37F-4ECF-A9CB-E7A25C2FB700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D33C0A45-F37F-4ECF-A9CB-E7A25C2FB700}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D33C0A45-F37F-4ECF-A9CB-E7A25C2FB700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51822234-74EC-48A6-A26E-F9FBE5766744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51822234-74EC-48A6-A26E-F9FBE5766744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51822234-74EC-48A6-A26E-F9FBE5766744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51822234-74EC-48A6-A26E-F9FBE5766744}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,12 @@
+﻿@page
+@model RunKeeper.Pages.ActivityDetailsModel
+@{
+    ViewData["Title"] = "ActivityDetails";
+}
+
+<h1>ActivityDetails</h1>
+
+@Model.ranking.position najlepszy w przedziale @Model.ranking.range.Description
+<br />
+Gorszy od najlepszego o @Model.ranking.bestDifference
+

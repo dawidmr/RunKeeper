@@ -18,12 +18,12 @@ namespace WebCrawler
 
             var dbFormatData = convertion.ConvertFromJsonDbToRunkeeperDB(convertedData);
 
-            new DataDBConnector().AddData(dbFormatData);
+            new ActivitiesRepository().AddData(dbFormatData);
         }
 
         public List<string> GetUserDataFromWebsite(string login)
         {
-            var newestEntry = new DataDBConnector().GetLatestEntryDate(login);
+            var newestEntry = new ActivitiesRepository().GetLatestEntryDate(login);
 
             var since = newestEntry.HasValue ? newestEntry.Value : defaultStartDate;
             var data = new RunkeeperWebsite().GetDataFromRunkeeperWebsite(login, since);

@@ -1,41 +1,44 @@
-﻿using System;
+﻿using DataAccess;
+using DataAccess.RunkeeperDB;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using RunKeeper.Model;
-using DataAccess.RunkeeperDB;
 
 namespace RunKeeper.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        public List<DataEx> data = new List<DataEx>();
-        private const string LinkPattern = "https://runkeeper.com/user/{0}/activity/{1}";
+        private readonly IMemoryCache _cache;
+        private readonly IActivitiesRepository _dataConnector;
+        public List<DataEx> activities;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, IMemoryCache cache, IActivitiesRepository dataConnector)
         {
             _logger = logger;
+            _cache = cache;
+            _dataConnector = dataConnector;
         }
 
         public void OnGet()
         {
-            var dataFromDb = new DataDBConnector().GetData("mroczekdawid").Where(x => x.Type == "Running").OrderByDescending(x => x.ActivityDateTime);
-
-            data.AddRange(dataFromDb.Select(x => new DataEx(x)));
-
-            foreach(var d in data)
+            if (!_cache.TryGetValue(Constants.DataCacheField, out activities))
             {
-                d.Link = string.Format(LinkPattern, d.Username, d.ActivityId);
+                activities = new ActivitiesRepository()
+                    .GetActivitiesEx(Constants.MyLogin)
+                    .Where(x => x.Type == "Running")
+                    .OrderByDescending(x => x.ActivityDateTime).ToList();
+
+                _cache.Set(Constants.DataCacheField, activities, new DateTimeOffset(DateTime.Now.AddHours(1)));
             }
         }
 
         public void OnPostUpdate()
         {
-            new WebCrawler.Manager().Update("mroczekdawid");
+            new WebCrawler.Manager().Update(Constants.MyLogin);
             OnGet();
         }
     }

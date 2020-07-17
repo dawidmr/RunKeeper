@@ -9,7 +9,7 @@ namespace Tests
         [TestMethod]
         public void TestMethod1()
         {
-            var data = new DataDBConnector().GetLatestEntryDate("mroczekdawid");
+            var data = new ActivitiesRepository().GetLatestEntryDate("mroczekdawid");
         }
     }
 }

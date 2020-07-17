@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RunKeeper.DataScaffolded;
+using DataAccess.RunkeeperDB;
 
 namespace RunKeeper
 {
@@ -29,6 +30,7 @@ namespace RunKeeper
 
             services.AddDbContext<RunKeeperContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RunKeeperContext")));
+            services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

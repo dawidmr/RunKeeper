@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using RunKeeper.Model;
 
 namespace RunKeeper.DataScaffolded
 {
@@ -14,6 +10,6 @@ namespace RunKeeper.DataScaffolded
         {
         }
 
-        public DbSet<RunKeeper.Model.DataEx> DataEx { get; set; }
+        public DbSet<DataEx> DataEx { get; set; }
     }
 }

@@ -10,27 +10,52 @@
 </form>
 
 <div class="text-center">
-    <table class="table">
-        @foreach (var d in Model.data)
-        {
-        <tr>
-            <td>
-                @d.ActivityDateTime.ToShortDateString()
-            </td>
-            <td>
-                @d.Type
-            </td>
-            <td>
-                @d.Distance.ToString("#0.00")
-            </td>
-            <td>
-                @d.ElapsedTime
-            </td>
-            <td>
-               <a href=@d.Link target="_blank">link</a>
-            </td>
-        </tr>
-        }
+    <table class="table table-sm table-striped table-hover border-bottom">
+        <thead>
+            <tr>
+                <th>
+                    Data
+                </th>
+                <th>
+                    Typ
+                </th>
+                <th>
+                    Dystans
+                </th>
+                <th>
+                    Czas
+                </th>
+                <th>
+                    Link
+                </th>
+            </tr>
+        </thead>
+            <tbody>
+                @foreach (var d in Model.activities)
+                {
+                    <tr>
+                        <td class="d-none d-lg-table-cell">
+                            @d.ActivityDateTime.ToShortDateString()
+                        </td>
+                        <td>
+                            @d.Type
+                        </td>
+                        <td>
+                            @d.Distance.ToString("#0.00")
+                        </td>
+                        <td>
+                            @d.ElapsedTime
+                        </td>
+                        <td>
+                            <a href=@d.Link target="_blank">@d.Link</a>
+                        </td>
+                        <td>
+                            <a asp-page="ActivityDetails" asp-route-activityId=@d.ActivityId>Szczegóły</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
     </table>
 
 </div>

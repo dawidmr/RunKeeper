@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCrawler", "WebCrawler\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{D33C0A45-F37F-4ECF-A9CB-E7A25C2FB700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ranking", "Ranking\Ranking.csproj", "{51822234-74EC-48A6-A26E-F9FBE5766744}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ranking", "Ranking\Ranking.csproj", "{51822234-74EC-48A6-A26E-F9FBE5766744}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

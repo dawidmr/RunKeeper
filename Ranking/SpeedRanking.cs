@@ -19,7 +19,7 @@ namespace Ranking
 
             var activitiesInRange = GetOrderedActivitesInRange(allActivities, ranking.range);
 
-            ranking.activitiesInRangeIds = activitiesInRange.Select(a => a.ActivityId).ToList();
+            ranking.orderedActivitiesInRangeIds = activitiesInRange.Select(a => a.ActivityId).ToList();
             ranking.position = activitiesInRange.ToList().IndexOf(activity) + 1;
             ranking.bestDifference = GetBestDifference(activity, activitiesInRange.First());
 
@@ -33,7 +33,7 @@ namespace Ranking
                 .OrderBy(a => a.Pace);
         }
 
-        public TimeSpan GetBestDifference(DataEx activity, DataEx best)
+        private TimeSpan GetBestDifference(DataEx activity, DataEx best)
         {
             var paceInSeconds = (int)(activity.ElapsedTime.TotalSeconds / activity.Distance);
             var bestPaceInSeconds = (int)(best.ElapsedTime.TotalSeconds / best.Distance);
@@ -41,6 +41,40 @@ namespace Ranking
             var paceDifference = TimeSpan.FromSeconds(paceInSeconds - bestPaceInSeconds);
 
             return paceDifference;
+        }
+
+        public List<DataEx> GetSurroundingActivities(List<DataEx> activitiesInRange, int acitivityPosition, int count = 11)
+        {
+            if (count >= activitiesInRange.Count)
+            {
+                return activitiesInRange;
+            }
+
+            var sideCount = count / 2;
+
+            if (acitivityPosition > sideCount && acitivityPosition + sideCount < activitiesInRange.Count)
+            {
+                return activitiesInRange
+                    .Skip(acitivityPosition - sideCount - 1)
+                    .Take(count)
+                    .ToList();
+            }
+            else if (acitivityPosition <= sideCount)
+            {
+                return activitiesInRange
+                    .Take(count)
+                    .ToList();
+                    
+            }
+            else
+            {
+                int rightDiff = acitivityPosition + sideCount - activitiesInRange.Count;
+
+                return activitiesInRange
+                    .Skip(acitivityPosition - 1 - sideCount - rightDiff)
+                    .Take(count)
+                    .ToList();
+            }
         }
     }
 }

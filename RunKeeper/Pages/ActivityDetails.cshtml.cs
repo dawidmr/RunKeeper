@@ -5,6 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Ranking;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 namespace RunKeeper.Pages
 {
@@ -15,6 +16,7 @@ namespace RunKeeper.Pages
         public DataEx activityData;
         public RankingDTO ranking;
         private List<DataEx> allAcitvities;
+        public string ChartData = null;
 
         public ActivityDetailsModel(IMemoryCache cache, IActivitiesRepository dBConnector)
         {
@@ -24,6 +26,9 @@ namespace RunKeeper.Pages
 
         public void OnGet(string activityId)
         {
+            int[] chartData = { 1, 2, 3, 5, 10 , 20};
+            ChartData = JsonSerializer.Serialize(chartData, typeof(int[]));
+
             if (!_cache.TryGetValue(Constants.DataCacheField, out allAcitvities))
             {
                 activityData = allAcitvities.FirstOrDefault(a => a.ActivityId == activityId);

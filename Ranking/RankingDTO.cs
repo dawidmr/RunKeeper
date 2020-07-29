@@ -8,6 +8,6 @@ namespace Ranking
         public IRange range { get; set; }
         public int position { get; set; }
         public TimeSpan bestDifference { get; set; }
-        public List<string> activitiesInRangeIds { get; set; }
+        public List<string> orderedActivitiesInRangeIds { get; set; }
     }
 }
